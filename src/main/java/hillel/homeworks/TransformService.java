@@ -22,6 +22,11 @@ public class TransformService {
 
     private long duration;
 
+    /**
+     * Конвертация Json-файла в Yaml-файл
+     * @param jsonFile входной Json-файл в объекте File
+     * @param yamlFile выходной Yaml-файл в объекте File
+     */
     void JsonToYaml(File jsonFile, File yamlFile) {
         parsingError = false;
         ioError = false;
@@ -47,6 +52,11 @@ public class TransformService {
         duration = System.currentTimeMillis() - startTime;
     }
 
+    /**
+     * Конвертация Yaml-файла в Json-файл
+     * @param yamlFile входной Yaml-файл в объекте File
+     * @param jsonFile выходной Json-файл в объекте File
+     */
     void YamlToJson(File yamlFile, File jsonFile) {
         parsingError = false;
         ioError = false;
@@ -74,6 +84,10 @@ public class TransformService {
         duration = System.currentTimeMillis() - startTime;
     }
 
+    /**
+     * Отдать состояние последней конвертации в виде строки
+     * @return Строка с описанием результатов последней конвертации
+     */
     String getLastTransformStateAsText() {
         String s = inputFileName + "(" + inputFileSize + ") -> " + outputFileName + "(" + outputFileSize + ")  duration(ms): " + duration;
         if (parsingError) s = s + "  Parsing ERROR!";
