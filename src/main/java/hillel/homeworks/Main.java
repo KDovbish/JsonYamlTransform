@@ -5,10 +5,6 @@ import java.io.File;
 public class Main {
     public static void main(String[] args) {
 
-        //  *** DEBUG ***
-        System.out.println("java.class.path: " + System.getProperty("java.class.path"));
-
-
         //  Определям папку из которой будут браться файлы для конвертации
         String workFolder;
         if (args.length == 0) {
@@ -16,17 +12,15 @@ public class Main {
         } else {
             workFolder = args[0];
             if (!workFolder.endsWith(File.separator)) workFolder = workFolder + File.separator;
+            if (!(new File(workFolder).isDirectory())) {
+                System.out.println(workFolder + " : Folder is not found!");
+                return;
+            }
         }
 
         //  Определяем папку, куда будут складываться сконвертированные файлы
         String convertedFolder = FilesService.getCurrentFolder() + "converted" + File.separator;
         FilesService.mkdir(convertedFolder);
-
-
-        //  *** DEBUG ***
-        System.out.println("java.class.path: " + System.getProperty("java.class.path"));
-
-
 
         //  Объект для трансформации json <-> yaml
         TransformService transformService = new TransformService();
